@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap');
+
+@font-face {
+    font-family: 'JFFlat';
+    src: url('/fonts/text.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body 
+{
+    font-family: "JFFlat", sans-serif;
+    background-color: #fff;
+}
+.content-container 
+{
+    max-width: 700px;
+}
+.logo 
+{
+    padding-top: 50px;
+}
+.logo img 
+{
+    max-width: 240px;
+}
+.content-text
+{
+    margin: 20px;
+}
+.content-text div {
+    color: #666;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 36px;
+}
+.page-style-selection
+{
+    max-width: 700px;
+}
+.page-style-item-container
+{
+    align-self: stretch;
+}
+.page-style-item
+{
+    
+}
+.page-style-item img 
+{
+    max-width: 170px;
+    margin: auto;
+    border: 10px #ffffff solid;
+    border-radius: 10px;
+    box-shadow: 0 0 22px 4px #dcdcdc;
+    object-fit: scale-down;
+}
+.page-style-item::before
+{
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background: #ffffffba;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.page-style-item::after
+{
+    content: '';
+    width: 0px;
+    height: 0px;
+    background: #009688;
+    position: absolute;
+    border-radius: 100%;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.page-style-item[selected='selected']::after
+{
+    content: '';
+    width: 40px;
+    height: 40px;
+    transform: translate(-50%, -50%);
+    border: 10px white solid;
+}
+input 
+{
+    border-radius: 23px;
+    color: #2d2d2d !important;
+    background: #fff;
+    font-size: 14px;
+    text-align: center;
+    height: 50px;
+    max-width: 300px !important;
+    padding: 0 !important;
+    float: none;
+    align-items: center;
+    display: block;
+    border: 1px solid #cccccc;
+    width: 100%;
+    outline: none !important;
+}
+div.recaptacha-holder input
+{
+    width: 135px !important;
+    float: right;
+    height: 40px;
+    border-radius: 18px;
+    background: #fff !important;
+    color: #666;
+    text-align: center;
+    margin-right: 10px;
+    font-size: 14px;
+    line-height: 40px;
+    padding: 0;
+    border: 1px solid #cccccc;
+}
+
+input[type=password]:hover, input[type=text]:hover, input[type=file]:hover, input:not([type]):hover, textarea:hover, .sp-peoplepicker-topLevel:hover, .ms-inputBox:hover {
+    border-color: #92c0e0 !important;
+}
+.BGBottom {
+    background: url(../image/BG.svg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: fixed;
+    bottom: 0px;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+}
+
+.submit-holder button
+{
+    border-bottom: 0px;
+    background: var(--buttton-background-color) !important;
+    max-width: 100%;
+    font-size: 16px;
+    border-radius: var(--border-radius) !important;
+    color: var(--button-color);
+    height: 40px;
+    padding: 0;
+    width: 50%;
+    line-height: 40px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    border: var(--border-width) solid var(--border-color) !important;
+}
