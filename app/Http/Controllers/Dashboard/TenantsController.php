@@ -142,6 +142,14 @@ class TenantsController extends Controller
             $data['wide'] = $imagePath;
         }
 
+        $scriptPath = '/var/scripts/add_domain_to_cloudpanel.sh';
+        $command = "bash $scriptPath " . $data['domain'];
+        $output = [];
+        $statusCode = 0;
+
+        exec($command, $output, $statusCode);
+
+
         $tenant = Tenant::create($data);
 
         $data['tenant_id'] = $tenant->id;
@@ -259,5 +267,16 @@ class TenantsController extends Controller
 
         $tenant->save();
         $details->save();
+    }
+
+    public function destroy(Tenant $tenant)
+    {
+        $scriptPath = '/var/scripts/remove_domain_from_cloudpanel.sh';
+        $command = "bash $scriptPath " . $tenant->domain;
+        $output = [];
+        $statusCode = 0;
+
+        $tenant->delete();
+        return response()->json(['message' => 'Tenant deleted successfully']);
     }
 }
