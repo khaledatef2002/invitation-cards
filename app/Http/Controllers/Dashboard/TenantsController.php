@@ -276,6 +276,8 @@ class TenantsController extends Controller
         $output = [];
         $statusCode = 0;
 
+        exec($command, $output, $statusCode);
+
         $tenant->delete();
         return response()->json(['message' => 'Tenant deleted successfully']);
     }
