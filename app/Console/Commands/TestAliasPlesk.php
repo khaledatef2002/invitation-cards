@@ -33,6 +33,9 @@ class TestAliasPlesk extends Command
         ->withBody('<?xml version="1.0" encoding="UTF-8"?>
                 <packet version="1.6.3">
                     <site-alias>
+                        <pref>
+                            <seo-redirect>0</seo-redirect>
+                        </pref>
                         <create>
                             <site-id>1</site-id>
                             <name>khaled.inv-cards.com</name>
