@@ -26,24 +26,16 @@ class TestAliasPlesk extends Command
      */
     public function handle()
     {
-        $response = Http::withBasicAuth('admin', 'Kh159753At@')
-            ->post('https://funny-sinoussi.104-248-37-88.plesk.page:443/enterprise/control/agent.php', [
-                'packet' => '<packet version="1.6.3">
-                            <domains>
-                                <add>
-                                <name>inv-cards.com</name>
-                                <hosting>
-                                    <vrt_hst>
-                                    <domain>
-                                        <name>example.com</name>
-                                    </domain>
-                                    </vrt_hst>
-                                </hosting>
-                                </add>
-                            </domains>
-                            </packet>'
-            ]);
-
-        echo $response->body();
-    }
+        $response = Http::withBasicAuth('admin', 'Kh159753At@') // Using Basic Authentication
+        ->post('https://104.248.37.88/api/v2/domains', [
+            'primaryDomain' => 'example.com', // Primary domain to which the alias will be linked
+            'aliasDomain' => 'inv-cards.com' // The alias domain you want to create
+        ]);
+    
+        if ($response->successful()) {
+            echo 'Alias domain created successfully!';
+        } else {
+            echo 'Error: ' . $response->status() . ' - ' . $response->body();
+        }
+        }
 }
