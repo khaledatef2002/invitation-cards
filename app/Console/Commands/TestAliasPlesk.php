@@ -26,7 +26,10 @@ class TestAliasPlesk extends Command
      */
     public function handle()
     {
-        $response = Http::withBasicAuth('admin', 'Kh159753At@') // Using Basic Authentication
+        $response = Http::withHeaders([
+            'HTTP_AUTH_LOGIN' => 'admin', // Username
+            'HTTP_AUTH_PASSWD' => 'Kh159753At@' // Password
+        ])
         ->post('https://funny-sinoussi.104-248-37-88.plesk.page:443/enterprise/control/agent.php', [
             'packet' => '<?xml version="1.0" encoding="UTF-8"?>
                     <packet>
