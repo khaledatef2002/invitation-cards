@@ -27,20 +27,19 @@ class TestAliasPlesk extends Command
     public function handle()
     {
         $response = Http::withHeaders([
-            'HTTP_AUTH_LOGIN' => 'admin', // Username
-            'HTTP_AUTH_PASSWD' => 'Kh159753At@' // Password
+            'HTTP_AUTH_LOGIN' => 'admin',
+            'HTTP_AUTH_PASSWD' => 'Kh159753At@'
         ])
-        ->post('https://funny-sinoussi.104-248-37-88.plesk.page:443/enterprise/control/agent.php', [
-            'packet' => '<?xml version="1.0" encoding="UTF-8"?>
-                    <packet>
-                        <site-alias>
-                            <create>
-                                <site-id>1</site-id>
-                                <name>myalias.com</name>
-                            </create>
-                        </site-alias>
-                    </packet>'
-        ]);
+        ->withBody('<?xml version="1.0" encoding="UTF-8"?>
+                <packet version="1.6.3">
+                    <site-alias>
+                        <create>
+                            <site-id>1</site-id>
+                            <name>myalias.com</name>
+                        </create>
+                    </site-alias>
+                </packet>', 'text/xml')
+        ->post('https://funny-sinoussi.104-248-37-88.plesk.page:443/enterprise/control/agent.php');
     
         echo $response->body();
     }
