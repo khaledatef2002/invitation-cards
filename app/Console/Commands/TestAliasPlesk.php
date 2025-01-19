@@ -27,7 +27,7 @@ class TestAliasPlesk extends Command
     public function handle()
     {
         $response = Http::withBasicAuth('admin', 'Kh159753At@')
-            ->post('https://104.248.37.88:8443/enterprise/control/agent.php', [
+            ->post('https://inv-cards.com:8443/enterprise/control/agent.php', [
                 'packet' => '<packet version="1.6.3">
                             <domains>
                                 <add>
