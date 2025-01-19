@@ -34,11 +34,13 @@ class TestAliasPlesk extends Command
                 <packet version="1.6.3">
                     <site-alias>
                         <create>
-                            <pref>
-                                <web>0</web>
-                            </pref>
                             <site-id>1</site-id>
                             <name>khaled.inv-cards.com</name>
+                        </create>
+                        <create>
+                            <pref>
+                                <seo-redirect>0</seo-redirect>
+                            </pref>
                         </create>
                     </site-alias>
                 </packet>', 'text/xml')
