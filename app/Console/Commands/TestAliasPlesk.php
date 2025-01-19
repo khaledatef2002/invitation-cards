@@ -35,7 +35,7 @@ class TestAliasPlesk extends Command
                     <site-alias>
                         <create>
                             <site-id>1</site-id>
-                            <name>myalias.com</name>
+                            <name>khaled.inv-cards.com</name>
                         </create>
                     </site-alias>
                 </packet>', 'text/xml')
