@@ -27,7 +27,7 @@ class TestAliasPlesk extends Command
     public function handle()
     {
         $response = Http::withBasicAuth('admin', 'Kh159753At@') // Using Basic Authentication
-        ->post('https://104.248.37.88/api/v2/domains', [
+        ->post('https://funny-sinoussi.104-248-37-88.plesk.page:443/api/v2/domains', [
             'primaryDomain' => 'example.com', // Primary domain to which the alias will be linked
             'aliasDomain' => 'inv-cards.com' // The alias domain you want to create
         ]);
