@@ -30,7 +30,7 @@ class TestAliasPlesk extends Command
         ->post('https://funny-sinoussi.104-248-37-88.plesk.page:443/api/v2/domains', [
             'name' => 'example.com',
             'primaryDomain' => 'inv-cards.com', // Primary domain to which the alias will be linked
-            'hosting_type' => 'alias',
+            'hosting_type' => 'default',
             'hosting_settings' => [
             'vrt_hst' => [
                     'domain' => [
