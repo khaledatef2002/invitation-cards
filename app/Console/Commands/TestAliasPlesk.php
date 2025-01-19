@@ -39,10 +39,6 @@ class TestAliasPlesk extends Command
                     </packet>'
         ]);
     
-        if ($response->successful()) {
-            echo 'Alias domain created successfully!';
-        } else {
-            echo 'Error: ' . $response->status() . ' - ' . $response->body();
-        }
-        }
+        echo $response->body();
+    }
 }
