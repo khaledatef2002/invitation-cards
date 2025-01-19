@@ -27,14 +27,16 @@ class TestAliasPlesk extends Command
     public function handle()
     {
         $response = Http::withBasicAuth('admin', 'Kh159753At@') // Using Basic Authentication
-        ->post('https://funny-sinoussi.104-248-37-88.plesk.page:443/api/v2/domains', [
-            'name' => 'test.inv-cards.com',
-            'primaryDomain' => 'inv-cards.com', // Primary domain to which the alias will be linked
-            'hosting_type' => 'frame_forwarding',
-            'hosting_settings' => [
-                'dest_url' => 'inv-cards.com'
-            ],
-            
+        ->post('https://funny-sinoussi.104-248-37-88.plesk.page:443/enterprise/control/agent.php', [
+            'packet' => '<?xml version="1.0" encoding="UTF-8"?>
+                    <packet>
+                        <site-alias>
+                            <create>
+                                <site-id>1</site-id>
+                                <name>myalias.com</name>
+                            </create>
+                        </site-alias>
+                    </packet>'
         ]);
     
         if ($response->successful()) {
