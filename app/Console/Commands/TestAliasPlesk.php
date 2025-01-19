@@ -35,7 +35,7 @@ class TestAliasPlesk extends Command
                     <site-alias>
                         <create>
                             <pref>
-                                <seo-redirect>0</seo-redirect>
+                                <web>0</web>
                             </pref>
                             <site-id>1</site-id>
                             <name>khaled.inv-cards.com</name>
