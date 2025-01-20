@@ -158,31 +158,6 @@ class TenantsController extends Controller
             return response()->json(['error' => 'Failed to add tenant to Plesk'], 500);
         }
 
-        [$generateCertifcateStatus, $csr, $pvt] = $this->generate_certifcate($data['domain'], $data['name']);
-
-        if($generateCertifcateStatus != 'ok')
-        {
-            $invitation_details->delete();
-            $tenant->delete();
-
-            $this->remove_tenant_plesk($data['domain']);
-
-            return response()->json(['error' => 'Failed to generate tenant ssl certifcate for Plesk'], 500);
-        }
-
-        $installCertStatus = $this->install_certifcate($data['domain'], $csr, $pvt);
-        
-        if($installCertStatus != 'ok')
-        {
-            $invitation_details->delete();
-            $tenant->delete();
-
-            $this->remove_tenant_plesk($data['domain']);
-
-            return response()->json(['error' => 'Failed to install tenant ssl certifcate for Plesk'], 500);
-
-        }
-
         return response()->json(['redirectUrl' => route('dashboard.tenants.edit', $tenant)]);
     }
 
@@ -298,12 +273,6 @@ class TenantsController extends Controller
 
     public function destroy(Tenant $tenant)
     {
-        $removeCrtStatus = $this->remove_certifcate($tenant->domain);
-
-        if($removeCrtStatus != 'ok')
-            return response()->json(['error' => 'Failed to remove certificate from Plesk'], 500);    
-
-
         $status = $this->remove_tenant_plesk($tenant->domain);
 
         if($status != 'ok')
@@ -366,89 +335,6 @@ class TenantsController extends Controller
         $response = simplexml_load_string($response->body());
 
         $status = $response->{'site-alias'}->delete->result->status;
-
-        return $status;
-    }
-
-    private function generate_certifcate($domain, $company_name)
-    {
-        $response = Http::withHeaders([
-            'HTTP_AUTH_LOGIN' => 'admin',
-            'HTTP_AUTH_PASSWD' => 'Kh159753At@'
-        ])
-        ->withBody('<?xml version="1.0" encoding="UTF-8"?>
-                <packet version="1.6.7.0">
-                    <certificate>
-                        <generate>
-                            <info>
-                                <bits>2048</bits>
-                                <country>AE</country>
-                                <state>Ras El Khaima</state>
-                                <location>Ras El Khaima</location>
-                                <company>'. $company_name .'</company>
-                                <email>'. $company_name .'@inv-cards.com</email>
-                                <name>'. $domain .'</name>
-                            </info>
-                        </generate>
-                    </certificate>
-                </packet>', 'text/xml')
-        ->post('https://funny-sinoussi.104-248-37-88.plesk.page:443/enterprise/control/agent.php');
-
-        $response = simplexml_load_string($response->body());
-
-        $status = $response->{'site-alias'}->generate->result->status;
-
-        return [$status, $response->{'site-alias'}->generate->result->csr, $response->{'site-alias'}->generate->result->pvt];
-    }
-
-    private function install_certifcate($domain, $csr, $pvt)
-    {
-        $response = Http::withHeaders([
-            'HTTP_AUTH_LOGIN' => 'admin',
-            'HTTP_AUTH_PASSWD' => 'Kh159753At@'
-        ])
-        ->withBody('<?xml version="1.0" encoding="UTF-8"?>
-                <packet version="1.6.7.0">
-                    <certificate>
-                        <install>
-                            <name>khaled.inv-cards.com</name>
-                            <webspace>inv-cards.com</webspace>
-                            <content>
-                                <csr>'. $csr .'</csr>
-                                <pvt>'. $pvt .'</pvt>
-                            </content>
-                            <ip_address>104.248.37.88</ip_address>
-                        </install>
-                    </certificate>
-                </packet>', 'text/xml')
-        ->post('https://funny-sinoussi.104-248-37-88.plesk.page:443/enterprise/control/agent.php');
-
-        $response = simplexml_load_string($response->body());
-
-        $status = $response->{'site-alias'}->install->result->status;
-
-        return $status;
-    }
-
-    private function remove_certifcate($domain)
-    {
-        $response = Http::withHeaders([
-            'HTTP_AUTH_LOGIN' => 'admin',
-            'HTTP_AUTH_PASSWD' => 'Kh159753At@'
-        ])
-        ->withBody('<?xml version="1.0" encoding="UTF-8"?>
-                <packet version="1.6.7.0">
-                    <certificate>
-                        <remove>
-                            <filter>
-                                <name>'. $domain .'</name>
-                            </filter>
-                        </remove>
-                    </certificate>
-                </packet>', 'text/xml')
-        ->post('https://funny-sinoussi.104-248-37-88.plesk.page:443/enterprise/control/agent.php');
-
-        $status = $response->{'site-alias'}->remove->result->status;
 
         return $status;
     }
