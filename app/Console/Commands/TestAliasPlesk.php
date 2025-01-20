@@ -31,6 +31,8 @@ class TestAliasPlesk extends Command
 
         // Execute the command
         $output = shell_exec($command);
+        $this->info($output);
+        
         $output = shell_exec("sudo systemctl restart apache2");
 
 
