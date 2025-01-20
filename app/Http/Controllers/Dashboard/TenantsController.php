@@ -321,15 +321,15 @@ class TenantsController extends Controller
             'HTTP_AUTH_PASSWD' => 'Kh159753At@'
         ])
         ->withBody('<?xml version="1.0" encoding="UTF-8"?>
-                <packet version="1.6.7.0">
-                    <site-alias>
-                        <delete>
-                            <filter>
-                                <name>'. $domain .'</name>
-                            <filter>    
-                        </delete>
-                    </site-alias>
-                </packet>', 'text/xml')
+            <packet version="1.6.7.0">
+                <site-alias>
+                    <delete>
+                        <filter>
+                            <name>'. $domain .'</name>
+                        </filter>
+                    </delete>
+                </site-alias>
+            </packet>', 'text/xml')
         ->post('https://funny-sinoussi.104-248-37-88.plesk.page:443/enterprise/control/agent.php');
 
         $response = simplexml_load_string($response->body());
