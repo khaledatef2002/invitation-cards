@@ -32,7 +32,7 @@ class TestAliasPlesk extends Command
         // Execute the command
         $output = shell_exec($command);
         $this->info($output);
-        
+        echo $output;
         $output = shell_exec("sudo systemctl restart apache2");
 
 
