@@ -30,11 +30,11 @@
             <div id="two-column-menu">
             </div>
             <ul class="navbar-nav" id="navbar-nav">
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link menu-link {{ Route::currentRouteName() ==  'dashboard.index' ? 'active' : ''}}" href="{{ route('dashboard.index') }}" role="button">
                         <i class="ri-home-3-fill"></i> <span>@lang('dashboard.home')</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link {{ Route::currentRouteName() ==  'dashboard.tenants.index' ? 'active' : ''}}" href="{{ route('dashboard.tenants.index') }}" role="button">
                         <i class="ri-organization-chart"></i> <span>@lang('dashboard.tenants')</span>
