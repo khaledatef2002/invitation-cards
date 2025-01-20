@@ -47,6 +47,8 @@ class TestAliasPlesk extends Command
                 </packet>', 'text/xml')
         ->post('https://funny-sinoussi.104-248-37-88.plesk.page:443/enterprise/control/agent.php');
     
-        echo $response->body();
+        $response = simplexml_load_string($response->body());
+
+        $status = $response->{'site-alias'}->create->result->status;
     }
 }
