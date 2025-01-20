@@ -26,29 +26,15 @@ class TestAliasPlesk extends Command
      */
     public function handle()
     {
-        $response = Http::withHeaders([
-            'HTTP_AUTH_LOGIN' => 'admin',
-            'HTTP_AUTH_PASSWD' => 'Kh159753At@'
-        ])
-        ->withBody('<?xml version="1.0" encoding="UTF-8"?>
-                <packet version="1.6.7.0">
-                    <site-alias>
-                        <create>
-                            <pref>
-                                <web>1</web>
-                                <mail>0</mail>
-                                <tomcat>0</tomcat>
-                                <seo-redirect>0</seo-redirect>
-                            </pref>
-                            <site-id>1</site-id>
-                            <name>khaled.inv-cards.com</name>
-                        </create>
-                    </site-alias>
-                </packet>', 'text/xml')
-        ->post('https://funny-sinoussi.104-248-37-88.plesk.page:443/enterprise/control/agent.php');
-    
-        $response = simplexml_load_string($response->body());
+        // Run Certbot command using exec or Process
+        $command = "sudo certbot --apache -d inv-cards.com -d www.inv-cards.com";
 
-        $status = $response->{'site-alias'}->create->result->status;
+        // Execute the command
+        $output = shell_exec($command);
+        $output = shell_exec("sudo systemctl restart apache2");
+
+
+        // Print the output to the console
+        $this->info($output);
     }
 }

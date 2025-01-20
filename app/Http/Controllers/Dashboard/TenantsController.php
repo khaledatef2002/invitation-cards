@@ -382,7 +382,7 @@ class TenantsController extends Controller
                         <generate>
                             <info>
                                 <bits>2048</bits>
-                                <country>UAE</country>
+                                <country>AE</country>
                                 <state>Ras El Khaima</state>
                                 <location>Ras El Khaima</location>
                                 <company>'. $company_name .'</company>
@@ -411,15 +411,19 @@ class TenantsController extends Controller
                 <packet version="1.6.7.0">
                     <certificate>
                         <install>
-                            <name>'. $domain .'</name>
+                            <name>khaled.inv-cards.com</name>
+                            <webspace>inv-cards.com</webspace>
                             <content>
                                 <csr>'. $csr .'</csr>
                                 <pvt>'. $pvt .'</pvt>
                             </content>
+                            <ip_address>104.248.37.88</ip_address>
                         </install>
                     </certificate>
                 </packet>', 'text/xml')
         ->post('https://funny-sinoussi.104-248-37-88.plesk.page:443/enterprise/control/agent.php');
+
+        $response = simplexml_load_string($response->body());
 
         $status = $response->{'site-alias'}->install->result->status;
 
