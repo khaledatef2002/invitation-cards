@@ -41,6 +41,35 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td>@lang('dashboard.tenants')</td>
+                                <td>
+                                    <div class="form-check">
+                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\Enums\PermissionsType::tenants_show->value }}" value="{{ \App\Enums\PermissionsType::tenants_show->value }}" {{ $role->hasPermissionTo(\App\Enums\PermissionsType::tenants_show->value) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="{{ \App\Enums\PermissionsType::tenants_show->value }}">
+                                            @lang('dashboard.show')
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\Enums\PermissionsType::tenants_edit->value }}" value="{{ \App\Enums\PermissionsType::tenants_edit->value }}" {{ $role->hasPermissionTo(\App\Enums\PermissionsType::tenants_edit->value) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="{{ \App\Enums\PermissionsType::tenants_edit->value }}">
+                                            @lang('dashboard.edit')
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\Enums\PermissionsType::tenants_delete->value }}" value="{{ \App\Enums\PermissionsType::tenants_delete->value }}" {{ $role->hasPermissionTo(\App\Enums\PermissionsType::tenants_delete->value) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="{{ \App\Enums\PermissionsType::tenants_delete->value }}">
+                                            @lang('dashboard.delete')
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\Enums\PermissionsType::tenants_create->value }}" value="{{ \App\Enums\PermissionsType::tenants_create->value }}" {{ $role->hasPermissionTo(\App\Enums\PermissionsType::tenants_create->value) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="{{ \App\Enums\PermissionsType::tenants_create->value }}">
+                                            @lang('dashboard.create')
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>@lang('dashboard.users')</td>
                                 <td>
                                     <div class="form-check">
