@@ -5,6 +5,12 @@ namespace App\Enums;
 enum PermissionsType: string
 {
 
+    // tenants reviews
+    case tenants_show = 'tenants_show';
+    case tenants_edit = 'tenants_edit';
+    case tenants_delete = 'tenants_delete';
+    case tenants_create = 'tenants_create';
+
     // users reviews
     case users_show = 'users_show';
     case users_edit = 'users_edit';

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\InvitationDetail;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -14,8 +16,18 @@ use Intervention\Image\Drivers\Gd\Driver as GdDriver;
 use Intervention\Image\Encoders\AutoEncoder;
 use Yajra\DataTables\Facades\DataTables;
 
-class TenantsController extends Controller
+class TenantsController extends Controller implements HasMiddleware
 {
+    public static function Middleware()
+    {
+        return [
+            new Middleware('can:tenants_show', only: ['index']),
+            new Middleware('can:tenants_create', only: ['create', 'store']),
+            new Middleware('can:tenants_edit', only: ['edit', 'update']),
+            new Middleware('can:tenants_delete', only: ['destroy']),
+        ];
+    }
+
     public function index(Request $request)
     {
         if($request->ajax())
@@ -27,13 +39,13 @@ class TenantsController extends Controller
                 return 
                 "<div class='d-flex align-items-center justify-content-center gap-2'>"
                 .
-                (Auth::user()->hasPermissionTo('roles_edit') ?
+                (Auth::user()->hasPermissionTo('tenants_edit') ?
                 "   
                     <a href='" . route('dashboard.tenants.edit', $row) . "'><i class='ri-settings-5-line fs-4' type='submit'></i></a>    
                 "
                 :"")
                 .
-                (Auth::user()->hasPermissionTo('roles_delete') ?
+                (Auth::user()->hasPermissionTo('tenants_delete') ?
                 "
                     <form id='remove_role' data-id='".$row['id']."' onsubmit='remove_role(event, this)'>
                         <input type='hidden' name='_method' value='DELETE'>

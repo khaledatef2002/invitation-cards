@@ -1,10 +1,10 @@
 @extends('dashboard.layouts.app')
 
-@section('title', __('dashboard.articles'))
+@section('title', __('dashboard.tenants'))
 
 @section('content')
 
-@if (Auth::user()->hasPermissionTo('roles_edit'))
+@if (Auth::user()->hasPermissionTo('tenants_edit'))
     <div class="card">
         <div class="card-body">
             <div class="row g-2">

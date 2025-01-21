@@ -40,10 +40,39 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td>@lang('dashboard.tenants')</td>
+                                <td>
+                                    <div class="form-check">
+                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\Enums\PermissionsType::tenants_show->value }}" value="{{ \App\Enums\PermissionsType::tenants_show->value }}">
+                                        <label class="form-check-label" for="{{ \App\Enums\PermissionsType::tenants_show->value }}">
+                                            @lang('dashboard.show')
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\Enums\PermissionsType::tenants_edit->value }}" value="{{ \App\Enums\PermissionsType::tenants_edit->value }}">
+                                        <label class="form-check-label" for="{{ \App\Enums\PermissionsType::tenants_edit->value }}">
+                                            @lang('dashboard.edit')
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\Enums\PermissionsType::tenants_delete->value }}" value="{{ \App\Enums\PermissionsType::tenants_delete->value }}">
+                                        <label class="form-check-label" for="{{ \App\Enums\PermissionsType::tenants_delete->value }}">
+                                            @lang('dashboard.delete')
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\Enums\PermissionsType::tenants_create->value }}" value="{{ \App\Enums\PermissionsType::tenants_create->value }}">
+                                        <label class="form-check-label" for="{{ \App\Enums\PermissionsType::tenants_create->value }}">
+                                            @lang('dashboard.create')
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>@lang('dashboard.users')</td>
                                 <td>
                                     <div class="form-check">
-                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\PermissionsType::users_show->value }}" value="{{ \App\PermissionsType::users_show->value }}">
+                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\Enums\PermissionsType::users_show->value }}" value="{{ \App\Enums\PermissionsType::users_show->value }}">
                                         <label class="form-check-label" for="{{ \App\Enums\PermissionsType::users_show->value }}">
                                             @lang('dashboard.show')
                                         </label>
@@ -72,26 +101,26 @@
                                 <td>@lang('dashboard.roles')</td>
                                 <td>
                                     <div class="form-check">
-                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\PermissionsType::roles_show->value }}" value="{{ \App\PermissionsType::roles_show->value }}">
-                                        <label class="form-check-label" for="{{ \App\PermissionsType::roles_show->value }}">
+                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\Enums\PermissionsType::roles_show->value }}" value="{{ \App\Enums\PermissionsType::roles_show->value }}">
+                                        <label class="form-check-label" for="{{ \App\Enums\PermissionsType::roles_show->value }}">
                                             @lang('dashboard.show')
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\PermissionsType::roles_edit->value }}" value="{{ \App\PermissionsType::roles_edit->value }}">
-                                        <label class="form-check-label" for="{{ \App\PermissionsType::roles_edit->value }}">
+                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\Enums\PermissionsType::roles_edit->value }}" value="{{ \App\Enums\PermissionsType::roles_edit->value }}">
+                                        <label class="form-check-label" for="{{ \App\Enums\PermissionsType::roles_edit->value }}">
                                             @lang('dashboard.edit')
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\PermissionsType::roles_delete->value }}" value="{{ \App\PermissionsType::roles_delete->value }}">
-                                        <label class="form-check-label" for="{{ \App\PermissionsType::roles_delete->value }}">
+                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\Enums\PermissionsType::roles_delete->value }}" value="{{ \App\Enums\PermissionsType::roles_delete->value }}">
+                                        <label class="form-check-label" for="{{ \App\Enums\PermissionsType::roles_delete->value }}">
                                             @lang('dashboard.delete')
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\PermissionsType::roles_create->value }}" value="{{ \App\PermissionsType::roles_create->value }}">
-                                        <label class="form-check-label" for="{{ \App\PermissionsType::roles_create->value }}">
+                                        <input name="permission[]" class="form-check-input" type="checkbox" id="{{ \App\Enums\PermissionsType::roles_create->value }}" value="{{ \App\Enums\PermissionsType::roles_create->value }}">
+                                        <label class="form-check-label" for="{{ \App\Enums\PermissionsType::roles_create->value }}">
                                             @lang('dashboard.create')
                                         </label>
                                     </div>
