@@ -44,7 +44,6 @@ class UsersController extends Controller implements HasMiddleware
                 return 
                 "<div class='d-flex align-items-center justify-content-center gap-2'>"
                 .
-                (Auth::id() != $row['id'] ?
                 (Auth::user()->hasPermissionTo('users_edit') ?
                 "
                     <a href='" . route('dashboard.users.edit', $row) . "'><i class='ri-settings-5-line fs-4' type='submit'></i></a>
@@ -62,7 +61,6 @@ class UsersController extends Controller implements HasMiddleware
                     </form>
                 "
                 : "")
-                : '')
                 .
                 "</div>";
             })
