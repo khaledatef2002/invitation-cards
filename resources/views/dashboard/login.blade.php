@@ -1,11 +1,11 @@
-@extends('front.main2')
+@extends('dashboard.layouts.guest')
 
 @section('title', __('custom.login'))
 
 @section('content')
 
 <div class="auth-container d-flex align-items-center justify-content-center">
-    <div class="auth-header">
+    <div class="auth-one-bg-position auth-one-bg">
         <div class="bg-overlay"></div>
 
         <div class="shape">
@@ -14,19 +14,17 @@
             </svg>
         </div>
     </div>
-    <div class="container form-container">
-        <div class="row">
-            <div class="logo d-flex justify-content-center mb-4">
-                <a href="{{ route('front.index') }}"><img src="{{ asset('front') }}/imgs/logo-white.png" width="140"></a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8 col-lg-6 col-xl-5 mx-auto">
-                <div class="card w-100">
+    <div class="container form-container mt-5">
+        <div class="row mt-5">
+            <div class="col-md-8 col-lg-6 col-xl-5 mx-auto mt-5">
+                <div class="card w-100 mt-5">
                     <div class="card-body py-4">
-                        <form id="login-form" action="{{ route('login') }}" method="post">
+                        <div class="text-center mt-2">
+                            <h5 class="text-primary">Welcome Back !</h5>
+                            <p class="text-muted">Sign in to continue to Dashboard.</p>
+                        </div>
+                        <form id="login-form" action="{{ route('login') }}" method="post" style="position: relative;z-index: 1;">
                             @csrf
-                            <h4 class="text-center mb-4 fw-bold form-title">@lang('custom.login.welcome') <i class="fa-solid fa-hand"></i></h4>
                             <div class="input-group d-flex flex-column mb-3">
                                 <label for="email" class="fw-bold">@lang('custom.email')</label>
                                 <input id="email" name="email" value="{{ old('email') }}" class="form-control w-100" type="email" placeholder="@lang('custom.enter-email')">
@@ -45,7 +43,6 @@
                             <div class="mt-4">
                                 <button class="btn btn-primary w-100" type="submit">@lang('custom.login')</button>
                             </div>
-                            <p class="mb-0 text-center mt-3">@lang('custom.login.no-account') <a href="{{ route('register') }}" class="text-decoration-none fw-bold">@lang('custom.signup')</a></p>
                         </form>
                     </div>
                 </div>
@@ -53,17 +50,12 @@
         </div>
         <div class="d-flex justify-content-center gap-2 mt-1">
             @if (LaravelLocalization::getCurrentLocale() == 'ar')
-                <a href="{{ LaravelLocalization::getLocalizedURL('en') }}"><img src="{{ asset('front') }}/imgs/en.svg" height="25" class="rounded-2" role="button"></a>
+                <a href="{{ LaravelLocalization::getLocalizedURL('en') }}"><img src="{{ asset('back') }}/images/flags/en.svg" height="25" class="rounded-2" role="button"></a>
             @else
-                <a href="{{ LaravelLocalization::getLocalizedURL('ar') }}"><img src="{{ asset('front') }}/imgs/ar.svg" height="25" class="rounded-2" role="button"></a>
+                <a href="{{ LaravelLocalization::getLocalizedURL('ar') }}"><img src="{{ asset('back') }}/images/flags/ar.svg" height="25" class="rounded-2" role="button"></a>
             @endif
         </div>
     </div>
-    <footer class="position-absolute bottom-0 w-100 text-center">
-        <p class="mb-0 text-muted">
-            @lang('custom.footer.copyright') &copy; 2024 {{ $website_settings->site_title }}.
-        </p>
-    </footer>
 </div>
 
 @endsection
